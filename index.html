@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonic Gameplay Login</title>
+  <!-- Google Fonts: Orbitron (Sonic temasına benzer bir font) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif; /* Sonic temasına benzer font */
+      background-color: #1f0479; /* Dark background color for the theme */
+      color: #fff;
+    }
+
+    /* Soluk Arka Plan GIF arka planı soluklaştırıp butonu daha görünür bir hale getirmek istiyorum */
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://media.giphy.com/media/NAnXpDVcb44cU/giphy.gif') no-repeat center center fixed;
+      background-size: cover;
+      opacity: 0.8; /* Opaklık seviyesi (0 ile 1 arasında) */
+      z-index: -1; /* Arka planda kalması için */
+    }
+
+    /* Görselli Buton Stili buton tuşumu görsel ile oluşturmak istiyorum görsel yüklüyorum projeme bu görsel css ile buton haline gelsin */
+    .main-button {
+      width: 200px;
+      height: 200px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      background-image: url('sonic.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.5s ease;
+      display: inline-block;
+      position: absolute;
+      top: 85%; /* Buton başlangıçta daha aşağıda olmalı */
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Hover Efekti */
+    .main-button:hover {
+      transform: translate(-50%, -50%) scale(2.1);
+    }
+
+    /* Yukarı Çıkma Animasyonu eklemek istiyorum giriş butonunun */
+    @keyframes moveUp {
+      0% {
+        top: 85%; /* Başlangıç konumu */
+      }
+      100% {
+        top: 10%; /* Yukarı çıkma mesafesi */
+      }
+    }
+
+    /* Dönme Animasyonu */
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* Butonun Tıklandığımda kendi etrafında spin atmasını istiyorum */
+    .main-button.clicked {
+      animation: moveUp 1s forwards, spin 2s linear infinite 1s;
+    }
+
+    /* Login Ekranı */
+    .login-screen {
+      display: none;
+      position: absolute;
+      top: 55%; /* Login ekranını biraz daha yukarı aldık */
+      left: 50%;
+      transform: translate(-50%, -50%); /* Tam ortalamak için */
+      width: 350px; /* Genişlik küçültüldü */
+      background: rgba(30, 57, 233, 0.8); /* sonic temalı bir renk için login ekranını parlak mavi renkte yapalım */
+      padding: 20px; /* Padding küçültüldü */
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); /* Neon mavi gölge */
+      text-align: center;
+      color: #3a6bff; /* Neon mavi renk */
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .login-screen.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .login-screen h2 {
+      margin-bottom: 15px; /* Başlık alt boşluğu azaltıldı */
+      font-size: 28px; /* Başlık font boyutu küçültüldü */
+      letter-spacing: 2px; /* Harf aralığı azaltıldı */
+      text-transform: uppercase; /* Büyük harf */
+      color: #00ffff; /* Neon mavi renk */
+      text-shadow: 0 0 10px #e7e7e7, 0 0 20px #3b00d0; /* Neon efekti */
+    }
+
+    .login-screen input {
+      width: 90%;
+      padding: 10px; /* Input padding küçültüldü */
+      margin: 10px 0; /* Input margin küçültüldü */
+      border: 2px solid #00059d; /* Neon mavi çerçeve */
+      border-radius: 50px;
+      background: rgba(16, 1, 180, 0.5); /* Şeffaf siyah arka plan */
+      color: #00ffff; /* Neon mavi renk */
+      font-family: 'Orbitron', sans-serif; /* Sonic temasına benzer font */
+      font-size: 14px; /* Input font boyutu küçültüldü */
+    }
+
+    .login-screen input::placeholder {
+      color: #00ffff; /* Placeholder rengi */
+      opacity: 0.8; /* Hafif şeffaf */
+    }
+
+    /* Sonic1.png ile Submit Butonu */
+    .sonic-submit-button {
+      width: 150px; /* Görselin genişliği büyütüldü */
+      height: 150px; /* Görselin yüksekliği büyütüldü */
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      background-image: url('sonic1.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+      margin-top: 15px; /* Input alanlarından biraz uzaklaştır */
+    }
+
+    .sonic-submit-button:hover {
+      transform: scale(1.5); /* Hover efekti */
+    }
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <!-- Görsel Buton -->
+    <button class="main-button" onclick="startAnimation()"></button>
+  </div>
+
+  <!-- Login Ekranı -->
+  <div id="loginScreen" class="login-screen">
+    <h2>Sonic Gameplay Login</h2> <!-- Sonic temasına uygun başlık -->
+    <form id="loginForm">
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <!-- Sonic1.png ile Submit Butonu -->
+      <button type="submit" class="sonic-submit-button"></button>
+    </form>
+  </div>
+
+  <script>
+    function startAnimation() {
+      var button = document.querySelector('.main-button');
+      var loginScreen = document.getElementById('loginScreen');
+
+      // Buton animasyonu başlatılıyor
+      button.classList.add('clicked'); // Animasyonu başlat
+
+      // Login ekranı görünür hale geliyor
+      setTimeout(function() {
+        loginScreen.classList.add('show'); // Login ekranını göster
+      }, 1000); // Butonun yukarı çıkma animasyonu bitene kadar bekle (1 saniye)
+    }
+
+    // Form gönderildiğinde çalışacak fonksiyon
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Formun sayfayı yenilemesini engelle
+      alert('Login successful!'); // Örnek bir mesaj göster
+    });
+  </script>
+</body>
+</html>
