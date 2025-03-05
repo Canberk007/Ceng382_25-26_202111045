@@ -16,12 +16,12 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      font-family: 'Orbitron', sans-serif; /* Sonic temasına benzer font */
-      background-color: #1f0479; /* Dark background color for the theme */
+      font-family: 'Orbitron', sans-serif;
+      background-color: #1f0479;
       color: #fff;
     }
 
-    /* Soluk Arka Plan GIF arka planı soluklaştırıp butonu daha görünür bir hale getirmek istiyorum */
+    /* Soluk Arka Plan GIF */
     body::after {
       content: "";
       position: absolute;
@@ -31,11 +31,11 @@
       height: 100%;
       background: url('https://media.giphy.com/media/NAnXpDVcb44cU/giphy.gif') no-repeat center center fixed;
       background-size: cover;
-      opacity: 0.8; /* Opaklık seviyesi (0 ile 1 arasında) */
-      z-index: -1; /* Arka planda kalması için */
+      opacity: 0.8;
+      z-index: -1;
     }
 
-    /* Görselli Buton Stili buton tuşumu görsel ile oluşturmak istiyorum görsel yüklüyorum projeme bu görsel css ile buton haline gelsin */
+    /* Görselli Buton Stili */
     .main-button {
       width: 200px;
       height: 200px;
@@ -47,39 +47,26 @@
       background-position: center;
       background-repeat: no-repeat;
       transition: all 0.5s ease;
-      display: inline-block;
       position: absolute;
-      top: 85%; /* Buton başlangıçta daha aşağıda olmalı */
+      top: 85%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    /* Hover Efekti */
     .main-button:hover {
       transform: translate(-50%, -50%) scale(2.1);
     }
 
-    /* Yukarı Çıkma Animasyonu eklemek istiyorum giriş butonunun */
     @keyframes moveUp {
-      0% {
-        top: 85%; /* Başlangıç konumu */
-      }
-      100% {
-        top: 10%; /* Yukarı çıkma mesafesi */
-      }
+      0% { top: 85%; }
+      100% { top: 10%; }
     }
 
-    /* Dönme Animasyonu */
     @keyframes spin {
-      0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-      }
-      100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-      }
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    /* Butonun Tıklandığımda kendi etrafında spin atmasını istiyorum */
     .main-button.clicked {
       animation: moveUp 1s forwards, spin 2s linear infinite 1s;
     }
@@ -88,16 +75,16 @@
     .login-screen {
       display: none;
       position: absolute;
-      top: 55%; /* Login ekranını biraz daha yukarı aldık */
+      top: 55%;
       left: 50%;
-      transform: translate(-50%, -50%); /* Tam ortalamak için */
-      width: 350px; /* Genişlik küçültüldü */
-      background: rgba(30, 57, 233, 0.8); /* sonic temalı bir renk için login ekranını parlak mavi renkte yapalım */
-      padding: 20px; /* Padding küçültüldü */
+      transform: translate(-50%, -50%);
+      width: 350px;
+      background: rgba(30, 57, 233, 0.8);
+      padding: 20px;
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); /* Neon mavi gölge */
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
       text-align: center;
-      color: #3a6bff; /* Neon mavi renk */
+      color: #3a6bff;
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
@@ -108,35 +95,29 @@
     }
 
     .login-screen h2 {
-      margin-bottom: 15px; /* Başlık alt boşluğu azaltıldı */
-      font-size: 28px; /* Başlık font boyutu küçültüldü */
-      letter-spacing: 2px; /* Harf aralığı azaltıldı */
-      text-transform: uppercase; /* Büyük harf */
-      color: #00ffff; /* Neon mavi renk */
-      text-shadow: 0 0 10px #e7e7e7, 0 0 20px #3b00d0; /* Neon efekti */
+      margin-bottom: 15px;
+      font-size: 28px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #00ffff;
+      text-shadow: 0 0 10px #e7e7e7, 0 0 20px #3b00d0;
     }
 
     .login-screen input {
       width: 90%;
-      padding: 10px; /* Input padding küçültüldü */
-      margin: 10px 0; /* Input margin küçültüldü */
-      border: 2px solid #00059d; /* Neon mavi çerçeve */
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #00059d;
       border-radius: 50px;
-      background: rgba(16, 1, 180, 0.5); /* Şeffaf siyah arka plan */
-      color: #00ffff; /* Neon mavi renk */
-      font-family: 'Orbitron', sans-serif; /* Sonic temasına benzer font */
-      font-size: 14px; /* Input font boyutu küçültüldü */
+      background: rgba(16, 1, 180, 0.5);
+      color: #00ffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
     }
 
-    .login-screen input::placeholder {
-      color: #00ffff; /* Placeholder rengi */
-      opacity: 0.8; /* Hafif şeffaf */
-    }
-
-    /* Sonic1.png ile Submit Butonu */
     .sonic-submit-button {
-      width: 150px; /* Görselin genişliği büyütüldü */
-      height: 150px; /* Görselin yüksekliği büyütüldü */
+      width: 150px;
+      height: 150px;
       border: none;
       background: transparent;
       cursor: pointer;
@@ -145,49 +126,76 @@
       background-position: center;
       background-repeat: no-repeat;
       transition: all 0.3s ease;
-      margin-top: 15px; /* Input alanlarından biraz uzaklaştır */
+      margin-top: 15px;
     }
 
     .sonic-submit-button:hover {
-      transform: scale(1.5); /* Hover efekti */
+      transform: scale(1.5);
+    }
+
+    /* Canlı Saat Stili (Aşağıda gösterilecek) */
+    .live-clock {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #e7e7e7, 0 0 20px #3b00d0;
     }
   </style>
 </head>
 <body>
   <div class="button-container">
-    <!-- Görsel Buton -->
     <button class="main-button" onclick="startAnimation()"></button>
   </div>
 
-  <!-- Login Ekranı -->
   <div id="loginScreen" class="login-screen">
-    <h2>Sonic Gameplay Login</h2> <!-- Sonic temasına uygun başlık -->
+    <h2>Sonic Gameplay Login</h2>
     <form id="loginForm">
       <input type="text" placeholder="Username" required>
       <input type="password" placeholder="Password" required>
-      <!-- Sonic1.png ile Submit Butonu -->
       <button type="submit" class="sonic-submit-button"></button>
     </form>
   </div>
+
+  <div class="live-clock" id="liveClock"></div>
 
   <script>
     function startAnimation() {
       var button = document.querySelector('.main-button');
       var loginScreen = document.getElementById('loginScreen');
 
-      // Buton animasyonu başlatılıyor
-      button.classList.add('clicked'); // Animasyonu başlat
+      button.classList.add('clicked');
 
-      // Login ekranı görünür hale geliyor
       setTimeout(function() {
-        loginScreen.classList.add('show'); // Login ekranını göster
-      }, 1000); // Butonun yukarı çıkma animasyonu bitene kadar bekle (1 saniye)
+        loginScreen.classList.add('show');
+      }, 1000);
     }
 
-    // Form gönderildiğinde çalışacak fonksiyon
     document.getElementById('loginForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Formun sayfayı yenilemesini engelle
-      alert('Login successful!'); // Örnek bir mesaj göster
+      event.preventDefault();
+      alert('Login successful!');
+    });
+
+    function updateClock() {
+      const clockElement = document.getElementById('liveClock');
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 'H' tuşuna basıldığında tüm formu gizleyip gösterme
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'H' || event.key === 'h') {
+        const loginScreen = document.getElementById('loginScreen');
+        loginScreen.style.display = (loginScreen.style.display === 'none') ? 'block' : 'none';
+      }
     });
   </script>
 </body>
