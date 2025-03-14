@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Table</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        th, td {
+            border: 1px solid #FFD700;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #FFD700;
+            color: black;
+        }
+        tr:hover {
+            background: rgba(255, 255, 0, 0.3);
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .delete-btn {
+            background: darkred;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .delete-btn:hover {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Class Information</h2>
+        <input type="text" id="className" placeholder="Class Name">
+        <input type="number" id="classSize" placeholder="Number of People">
+        <input type="text" id="classDesc" placeholder="Description">
+        <button onclick="addClass()">Submit</button>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Class Name</th>
+                    <th>Number of People</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="classTable">
+                <!-- Dynamic Data -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function addClass() {
+            let name = document.getElementById("className").value;
+            let size = document.getElementById("classSize").value;
+            let desc = document.getElementById("classDesc").value;
+
+            if (name && size && desc) {
+                let table = document.getElementById("classTable");
+                let row = table.insertRow();
+
+                row.insertCell(0).textContent = name;
+                row.insertCell(1).textContent = size;
+                row.insertCell(2).textContent = desc;
+
+                // Delete butonu ekleme
+                let deleteCell = row.insertCell(3);
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = function () {
+                    row.remove();
+                };
+                deleteCell.appendChild(deleteBtn);
+
+                // Reset form
+                document.getElementById("className").value = "";
+                document.getElementById("classSize").value = "";
+                document.getElementById("classDesc").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
