@@ -8,24 +8,26 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Orkun\\.nuget\\packages\\": {}
+    "C:\\Users\\kkkar\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Orkun\\Desktop\\githubyukle\\ceng382_25-26_202111078\\MyApp\\MyApp.csproj",
+      "projectUniqueName": "C:\\Users\\kkkar\\OneDrive\\Desktop\\RAZOR PAGE\\MyApp.csproj",
       "projectName": "MyApp",
-      "projectPath": "C:\\Users\\Orkun\\Desktop\\githubyukle\\ceng382_25-26_202111078\\MyApp\\MyApp.csproj",
-      "packagesPath": "C:\\Users\\Orkun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Orkun\\Desktop\\githubyukle\\ceng382_25-26_202111078\\MyApp\\obj\\",
+      "projectPath": "C:\\Users\\kkkar\\OneDrive\\Desktop\\RAZOR PAGE\\MyApp.csproj",
+      "packagesPath": "C:\\Users\\kkkar\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kkkar\\OneDrive\\Desktop\\RAZOR PAGE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Orkun\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kkkar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
