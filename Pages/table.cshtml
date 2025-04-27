@@ -1,0 +1,79 @@
+@page
+@model MyApp.Pages.TableModel
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Kullanıcı Listesi";
+}
+
+<h2>Kullanıcılar</h2>
+
+<table id="kullaniciTablo" border="1" style="width:90%; text-align:center; margin-top:20px;">
+    <thead>
+        <tr>
+            <th>Seç</th>
+            <th>#</th>
+            <th>Kullanıcı Adı</th>
+            <th>Şifre</th>
+            <th>Rol</th>
+            <th>Aktif Mi?</th>
+            <th>Oluşturulma Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+    @if (Model.KullaniciListesi != null && Model.KullaniciListesi.Count > 0)
+    {
+        int sira = 1;
+        foreach (var kullanici in Model.KullaniciListesi)
+        {
+            <tr>
+                <td><input type="checkbox" class="kullaniciCheckbox" value="@kullanici.Username" /></td>
+                <td>@sira</td>
+                <td>@kullanici.Username</td>
+                <td>@kullanici.Password</td>
+                <td>@kullanici.Role</td>
+                <td>@(kullanici.IsActive ? "Evet" : "Hayır")</td>
+                <td>@kullanici.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+            sira++;
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="7">Kayıtlı kullanıcı bulunamadı.</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div style="margin-top:20px;">
+    <button onclick="exportSelected()">Seçilenleri Export Et</button>
+    <a href="/Logout" class="btn btn-danger" style="margin-left:20px;">Çıkış Yap</a>
+</div>
+
+<script>
+    function exportSelected() {
+        const selected = [];
+        const checkboxes = document.querySelectorAll('.kullaniciCheckbox:checked');
+        checkboxes.forEach(cb => {
+            const row = cb.parentElement.parentElement;
+            const user = {
+                Username: row.cells[2].innerText,
+                Password: row.cells[3].innerText,
+                Role: row.cells[4].innerText,
+                IsActive: row.cells[5].innerText === "Evet",
+                CreatedAt: row.cells[6].innerText
+            };
+            selected.push(user);
+        });
+
+        const blob = new Blob([JSON.stringify(selected, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "selected_users.json";
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+</script>

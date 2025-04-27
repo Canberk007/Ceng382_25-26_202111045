@@ -1,0 +1,32 @@
+@page
+@model MyApp.Pages.LoginModel
+
+<h2>Login Sayfası</h2>
+
+<form method="post">
+    <div>
+        <label>Kullanıcı Adı:</label>
+        <input asp-for="InputUsername" />
+    </div>
+    <div>
+        <label>Şifre:</label>
+        <input asp-for="InputPassword" type="password" />
+    </div>
+    <div style="margin-top:10px;">
+        <button type="submit">Giriş Yap</button>
+    </div>
+</form>
+
+@if (Model.LoginBasarili)
+{
+    <div style="position:fixed; bottom:10px; left:10px; background-color:lightgreen; padding:10px; border-radius:5px;">
+        <strong>Giriş Yapıldı!</strong><br />
+        Session ID: @Model.SessionId <br />
+        Token: @Model.Token
+    </div>
+}
+else if (Model.HttpContext.Request.Method == "POST")
+
+{
+    <div style="color:red; margin-top:10px;">Hatalı kullanıcı adı veya şifre!</div>
+}
