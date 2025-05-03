@@ -1,0 +1,30 @@
+@page "{id:int}"
+@model MyApp.Pages.Classes.EditModel
+@{
+    ViewData["Title"] = "Edit Class";
+}
+
+<h2>Edit Class</h2>
+
+<form method="post">
+    <!-- 1) ID’yi gizli input olarak post ediyoruz, böylece EF’nin key’i kaybolmaz -->
+    <input type="hidden" asp-for="Class.Id" />
+
+    <div class="mb-3">
+        <label asp-for="Class.Name" class="form-label"></label>
+        <input asp-for="Class.Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Class.PersonCount" class="form-label"></label>
+        <input asp-for="Class.PersonCount" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Class.Description" class="form-label"></label>
+        <input asp-for="Class.Description" class="form-control" />
+    </div>
+
+    <!-- 2) IsActive checkbox’ı kaldırıldı, edit ekranında görünmüyor artık -->
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+</form>
